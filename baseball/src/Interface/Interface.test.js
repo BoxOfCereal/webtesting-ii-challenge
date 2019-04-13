@@ -5,6 +5,12 @@ import "jest-dom/extend-expect";
 
 import Interface from "./Interface";
 
+function multiClick(element, amount) {
+  for (let i = 0; i < amount; i++) {
+    fireEvent.click(element);
+  }
+}
+
 describe("The Interface Component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
@@ -31,11 +37,9 @@ describe("The Interface Component", () => {
     const { getByTestId, getByText } = render(<Interface />);
     const button = getByText("ball");
     const strikeButton = getByText("strike");
-    fireEvent.click(button);
+
     fireEvent.click(strikeButton);
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(button);
+    multiClick(button, 4);
 
     const ballCount = getByTestId("ball-count").textContent;
     const strikeCount = getByTestId("strike-count").textContent;
@@ -64,11 +68,8 @@ describe("The Interface Component", () => {
     const { getByTestId, getByText } = render(<Interface />);
     const button = getByText("ball");
     const strikeButton = getByText("strike");
-    fireEvent.click(button);
-    fireEvent.click(button);
-    fireEvent.click(strikeButton);
-    fireEvent.click(strikeButton);
-    fireEvent.click(strikeButton);
+    multiClick(button, 2);
+    multiClick(strikeButton, 3);
 
     const ballCount = getByTestId("ball-count").textContent;
     const strikeCount = getByTestId("strike-count").textContent;

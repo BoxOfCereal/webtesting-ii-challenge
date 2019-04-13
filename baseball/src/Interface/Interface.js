@@ -12,6 +12,7 @@ function Interface() {
           if (state.balls + 1 > 3) return { ...state, balls: 0, strikes: 0 };
           return { ...state, balls: state.balls + 1 };
         case "increment_strikes":
+          if (state.strikes + 1 > 2) return { ...state, balls: 0, strikes: 0 };
           return { ...state, strikes: state.strikes + 1 };
       }
     },
