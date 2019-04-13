@@ -9,7 +9,8 @@ function Interface() {
     (state, action) => {
       switch (action.type) {
         case "increment_balls":
-          return { ...state, balls: state.balls + 1 > 3 ? 0 : state.balls + 1 };
+          if (state.balls + 1 > 3) return { ...state, balls: 0, strikes: 0 };
+          return { ...state, balls: state.balls + 1 };
         case "increment_strikes":
           return { ...state, strikes: state.strikes + 1 };
       }

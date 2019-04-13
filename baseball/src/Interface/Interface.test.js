@@ -24,19 +24,25 @@ describe("The Interface Component", () => {
     expect(ballCount).toBe(ballsAfterClick);
     cleanup();
   });
-  it("resets balls after four balls", () => {
-    const ballsAfterClick = "0";
+  it("resets balls and strikes after four balls", () => {
+    const ballsAfterReset = "0";
+    const strikesAfterReset = "0";
 
     const { getByTestId, getByText } = render(<Interface />);
     const button = getByText("ball");
+    const strikeButton = getByText("strike");
     fireEvent.click(button);
+    fireEvent.click(strikeButton);
     fireEvent.click(button);
     fireEvent.click(button);
     fireEvent.click(button);
 
     const ballCount = getByTestId("ball-count").textContent;
+    const strikeCount = getByTestId("strike-count").textContent;
 
-    expect(ballCount).toBe(ballsAfterClick);
+    expect(ballCount).toBe(ballsAfterReset);
+    expect(strikeCount).toBe(strikesAfterReset);
+    cleanup();
   });
 
   it("correctly updates strikes after the click event", () => {
@@ -46,8 +52,9 @@ describe("The Interface Component", () => {
     const button = getByText("strike");
     fireEvent.click(button);
 
-    const ballCount = getByTestId("strike-count").textContent;
+    const strikeCount = getByTestId("strike-count").textContent;
 
-    expect(ballCount).toBe(strikesAfterClick);
+    expect(strikeCount).toBe(strikesAfterClick);
+    cleanup();
   });
 });
