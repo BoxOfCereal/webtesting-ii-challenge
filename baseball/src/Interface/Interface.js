@@ -17,6 +17,8 @@ function Interface() {
         case "record_foul":
           if (state.strikes + 1 > 2) return { ...state, strikes: 2 };
           return { ...state, strikes: state.strikes + 1 };
+        case "record_hit":
+          return { ...state, strikes: 0, balls: 0 };
       }
     },
     {

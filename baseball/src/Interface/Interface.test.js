@@ -103,11 +103,14 @@ describe("The Interface Component", () => {
     const strikesAfterHit = "0";
     const ballsAfterHit = "0";
     const { getByTestId, getByText } = render(<Interface />);
+
     const strikeButton = getByText("strike");
     const ballButton = getByText("ball");
+    const hitButton = getByText("hit");
 
     multiClick(strikeButton, 2);
     multiClick(ballButton, 3);
+    fireEvent.click(hitButton);
 
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterHit);
