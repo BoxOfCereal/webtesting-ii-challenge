@@ -57,4 +57,25 @@ describe("The Interface Component", () => {
     expect(strikeCount).toBe(strikesAfterClick);
     cleanup();
   });
+  it("resets balls and strikes after three strikes", () => {
+    const ballsAfterReset = "0";
+    const strikesAfterReset = "0";
+
+    const { getByTestId, getByText } = render(<Interface />);
+    const button = getByText("ball");
+    const strikeButton = getByText("strike");
+    fireEvent.click(button);
+    fireEvent.click(button);
+    fireEvent.click(strikeButton);
+    fireEvent.click(strikeButton);
+    fireEvent.click(strikeButton);
+
+    const ballCount = getByTestId("ball-count").textContent;
+    const strikeCount = getByTestId("strike-count").textContent;
+
+    expect(strikeCount).toBe(strikesAfterReset);
+    expect(ballCount).toBe(ballsAfterReset);
+
+    cleanup();
+  });
 });
