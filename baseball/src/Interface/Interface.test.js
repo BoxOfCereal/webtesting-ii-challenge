@@ -11,4 +11,16 @@ describe("The Interface Component", () => {
     ReactDom.render(<Interface />, div);
     ReactDom.unmountComponentAtNode(div);
   });
+
+  it("correctly updates balls after the click event", () => {
+    const ballsAfterClick = "1";
+
+    const { getByTestId, getByText } = render(<Interface />);
+    const button = getByText("ball");
+    fireEvent.click(button);
+
+    const ballCount = getByTestId("ball-count").textContent;
+
+    expect(ballCount).toBe(ballsAfterClick);
+  });
 });
