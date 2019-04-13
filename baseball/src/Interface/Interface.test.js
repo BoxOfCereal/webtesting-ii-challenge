@@ -23,4 +23,16 @@ describe("The Interface Component", () => {
 
     expect(ballCount).toBe(ballsAfterClick);
   });
+
+  it("correctly updates strikes after the click event", () => {
+    const strikesAfterClick = "1";
+
+    const { getByTestId, getByText } = render(<Interface />);
+    const button = getByText("strike");
+    fireEvent.click(button);
+
+    const ballCount = getByTestId("strike-count").textContent;
+
+    expect(ballCount).toBe(strikesAfterClick);
+  });
 });
