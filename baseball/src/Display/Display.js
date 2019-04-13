@@ -4,10 +4,10 @@ function Display({ balls, strikes }) {
   return (
     <div>
       <p>
-        Balls: <span>{balls}</span>
+        Balls: <span data-testid="ball-count">{balls}</span>
       </p>
       <p>
-        Strikes: <span>{strikes}</span>
+        Strikes: <span data-testid="strike-count">{strikes}</span>
       </p>
     </div>
   );
