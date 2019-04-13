@@ -87,6 +87,7 @@ describe("The Interface Component", () => {
 
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterFoul);
+    cleanup();
   });
   it("doesn't increase strikes when there's more than two fouls", () => {
     const strikesAfterFoul = "2";
@@ -96,5 +97,22 @@ describe("The Interface Component", () => {
 
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterFoul);
+    cleanup();
+  });
+  it("resets strikes and balls when there's a hit", () => {
+    const strikesAfterHit = "0";
+    const ballsAfterHit = "0";
+    const { getByTestId, getByText } = render(<Interface />);
+    const strikeButton = getByText("strike");
+    const ballButton = getByText("ball");
+
+    multiClick(strikeButton, 2);
+    multiClick(ballButton, 3);
+
+    const strikeCount = getByTestId("strike-count").textContent;
+    expect(strikeCount).toBe(strikesAfterHit);
+    const ballCount = getByTestId("ball-count").textContent;
+    expect(ballCount).toBe(ballsAfterHit);
+    cleanup();
   });
 });
