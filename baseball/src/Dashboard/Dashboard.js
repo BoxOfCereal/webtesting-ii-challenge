@@ -6,6 +6,9 @@ function Dashboard() {
   const incrementStrikes = () => {
     dispatch({ type: "increment_strikes" });
   };
+  const recordFoul = () => {
+    dispatch({ type: "record_foul" });
+  };
   return (
     <div>
       <button onClick={incrementStrikes}>strike</button>
@@ -16,7 +19,7 @@ function Dashboard() {
       >
         ball
       </button>
-      <button>foul</button>
+      <button onClick={recordFoul}>foul</button>
       <button>hit</button>
     </div>
   );
