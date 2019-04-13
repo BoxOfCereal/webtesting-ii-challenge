@@ -88,4 +88,13 @@ describe("The Interface Component", () => {
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterFoul);
   });
+  it("doesn't increase strikes when there's more than two fouls", () => {
+    const strikesAfterFoul = "2";
+    const { getByTestId, getByText } = render(<Interface />);
+    const foulButton = getByText("foul");
+    multiClick(foulButton, 5);
+
+    const strikeCount = getByTestId("strike-count").textContent;
+    expect(strikeCount).toBe(strikesAfterFoul);
+  });
 });
