@@ -1,17 +1,15 @@
-import React, { useState, useEffect, useReducer } from "react";
+import React from "react";
 
 function Display({ balls, strikes }) {
   return (
-    <table>
-      <tr>
-        <th>Balls</th>
-        <th>Strikes</th>
-      </tr>
-      <tr>
-        <td>{balls}</td>
-        <td>{strikes}</td>
-      </tr>
-    </table>
+    <div>
+      <p>
+        Balls: <span>{balls}</span>
+      </p>
+      <p>
+        Strikes: <span>{strikes}</span>
+      </p>
+    </div>
   );
 }
 

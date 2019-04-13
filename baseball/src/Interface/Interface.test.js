@@ -3,12 +3,12 @@ import ReactDom from "react-dom";
 import { render, fireEvent } from "react-testing-library";
 import "jest-dom/extend-expect";
 
-import Dashboard from "./Dashboard";
+import Interface from "./Interface";
 
-describe("The Dashboard Component", () => {
+describe("The Interface Component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
-    ReactDom.render(<Dashboard />, div);
+    ReactDom.render(<Interface />, div);
     ReactDom.unmountComponentAtNode(div);
   });
 });
