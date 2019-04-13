@@ -2,6 +2,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import { render, fireEvent, cleanup } from "react-testing-library";
 import "jest-dom/extend-expect";
+afterEach(cleanup);
 
 import Interface from "./Interface";
 
@@ -28,7 +29,6 @@ describe("The Interface Component", () => {
     const ballCount = getByTestId("ball-count").textContent;
 
     expect(ballCount).toBe(ballsAfterClick);
-    cleanup();
   });
   it("resets balls and strikes after four balls", () => {
     const ballsAfterReset = "0";
@@ -46,7 +46,6 @@ describe("The Interface Component", () => {
 
     expect(ballCount).toBe(ballsAfterReset);
     expect(strikeCount).toBe(strikesAfterReset);
-    cleanup();
   });
 
   it("correctly updates strikes after the click event", () => {
@@ -59,7 +58,6 @@ describe("The Interface Component", () => {
     const strikeCount = getByTestId("strike-count").textContent;
 
     expect(strikeCount).toBe(strikesAfterClick);
-    cleanup();
   });
   it("resets balls and strikes after three strikes", () => {
     const ballsAfterReset = "0";
@@ -76,8 +74,6 @@ describe("The Interface Component", () => {
 
     expect(strikeCount).toBe(strikesAfterReset);
     expect(ballCount).toBe(ballsAfterReset);
-
-    cleanup();
   });
   it("recordes a strike when there's a foul", () => {
     const strikesAfterFoul = "1";
@@ -87,7 +83,6 @@ describe("The Interface Component", () => {
 
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterFoul);
-    cleanup();
   });
   it("doesn't increase strikes when there's more than two fouls", () => {
     const strikesAfterFoul = "2";
@@ -97,7 +92,6 @@ describe("The Interface Component", () => {
 
     const strikeCount = getByTestId("strike-count").textContent;
     expect(strikeCount).toBe(strikesAfterFoul);
-    cleanup();
   });
   it("resets strikes and balls when there's a hit", () => {
     const strikesAfterHit = "0";
@@ -116,6 +110,5 @@ describe("The Interface Component", () => {
     expect(strikeCount).toBe(strikesAfterHit);
     const ballCount = getByTestId("ball-count").textContent;
     expect(ballCount).toBe(ballsAfterHit);
-    cleanup();
   });
 });
