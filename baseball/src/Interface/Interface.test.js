@@ -79,4 +79,13 @@ describe("The Interface Component", () => {
 
     cleanup();
   });
+  it("recordes a strike when there's a foul", () => {
+    const strikesAfterFoul = "1";
+    const { getByTestId, getByText } = render(<Interface />);
+    const foulButton = getByText("foul");
+    fireEvent.click(foulButton);
+
+    const strikeCount = getByTestId("strike-count").textContent;
+    expect(strikeCount).toBe(strikesAfterFoul);
+  });
 });
